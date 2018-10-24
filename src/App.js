@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import {Motion, spring} from 'react-motion';
+// import {Motion, spring} from 'react-motion';
 import img from './header-bg.jpg';
-import style from './App.css';
+import './App.css';
 
 let Div = styled.div`
 // background: black;
@@ -19,20 +19,16 @@ justify-content: space-around;
 font-size: 1.5em;
 word-spacing: 10px;
 `
-// @Media(max-width: 600px){
-//   Div{}
-// }
+
 
 let HeroImg = styled.div`
-width:50vh; 
+width:100vw; 
 height:150px;
+object-fit:contain;
 `
 
 let MiddleWords = styled.div`
 font-size: 2em;
-// position: absolute;
-// top: 350px;
-// left: 700px;
 color: white;
 display:flex;
 justify-content: center;
@@ -43,17 +39,23 @@ let BigMiddleWords = styled.div`
 font-size: 4em;
 color: white;
 text-align: center;
-// position: absolute;
-// top: 450px;
-// left: 525px;
 `
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+    sideNav: false,
+    
+  };
+}
+  
   render() {
+    const {sideNav} = this.state;
+
     return (
       <div>
-        <div class = "menu">
-      &#x2630;  
+    <div>
     </div>
           <Div>
           <div className="yellowName">Start Bootstrap</div>
@@ -65,6 +67,16 @@ class App extends Component {
           <span> Contact </span>
           </div>
           </Div>
+        <div className = "menu" onClick={()=>this.setState({sideNav:!sideNav})}>&#x2630;  
+    </div>
+    
+      {sideNav && <div className="seeingIfThisWorks">
+          <span> Services </span>
+          <span> Portfolio </span>
+          <span> About </span>
+          <span> Team </span>
+          <span> Contact </span>
+          </div>}
           
           <HeroImg>
             <div className="backgroundImg">
@@ -76,7 +88,10 @@ class App extends Component {
             <div className="middleWords">Welcome to our studio!</div>
           </MiddleWords>
 
-          <BigMiddleWords><div className="bigMiddleWords">IT'S NICE TO MEET YOU</div></BigMiddleWords>
+          <BigMiddleWords>
+            <div className="bigMiddleWords">IT'S NICE TO MEET YOU</div></BigMiddleWords>
+
+          {/* <div className="seeingIfThisWorks">does this work?</div> */}
       </div>
     );
   }
